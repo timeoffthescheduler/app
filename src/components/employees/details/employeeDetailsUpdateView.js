@@ -1,6 +1,8 @@
 import React from 'react';
-import { getCookie } from '../../../utils/cookies';
+//import { getCookie } from '../../../utils/cookies';
 import Button from '../../commons/buttons/button';
+
+//let user = JSON.parse(localStorage.getItem('user'));
 
 const EmployeeDetailsUpdateView = (props) => (
   <div className='update'>
@@ -28,7 +30,7 @@ const EmployeeDetailsUpdateView = (props) => (
       </div>
       <div>
         <label>Role</label>
-        {(getCookie('role') === 'Admin')
+        {(props.role === 'Admin')
           ?
           <select name="role" className="dropdown" defaultValue={props.employee.role}>
             <option>Select</option>

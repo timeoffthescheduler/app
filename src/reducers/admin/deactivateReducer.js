@@ -6,8 +6,6 @@ export default function(state = [], action) {
   switch(action.type) {
     case types.DEACTIVATE_EMPLOYEE_SUCCESS:
       return { ...state, response };
-    case types.DEACTIVATE_EMPLOYEE_SUCCESS:
-      return { ...state, response };
     default:
       return state;
   }

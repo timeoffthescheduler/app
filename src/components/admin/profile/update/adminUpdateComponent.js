@@ -4,14 +4,17 @@ import { adminProfileAction, adminProfileUpdateAction } from '../../../../action
 import AdminUpdateView from './adminUpdateView';
 import HeaderComponent from '../../../commons/headerComponent';
 
-import { getCookie } from '../../../../utils/cookies';
+//import { getCookie } from '../../../../utils/cookies';
+
+var user = null;
 
 class AdminUpdateComponent extends Component {
   constructor(props) {
     super(props);
+    user = JSON.parse(localStorage.getItem('user'));
     this.props.dispatch(adminProfileAction({
       id: this.props.match.params.id,
-      access: getCookie('role')
+      access: user.role
     }));
   }
 
@@ -22,8 +25,8 @@ class AdminUpdateComponent extends Component {
       email: event.target.email.value,
       role: event.target.role.value,
       password: event.target.password.value,
-      access: getCookie('role'),
-      id: getCookie('id')
+      access: user.role,
+      id: user.id
     };
 
     this.props.dispatch(adminProfileUpdateAction(data));
@@ -43,7 +46,8 @@ class AdminUpdateComponent extends Component {
           profile={this.props.profile.action.response}
           handleUpdateAdmin={this.handleUpdateAdmin}
           success={success}
-          message={message}
+          message={message} 
+	  role={user.role}
         />
       </div>
     );

@@ -1,9 +1,11 @@
 import React from 'react';
-import { getCookie } from '../../../../utils/cookies';
+//import { getCookie } from '../../../../utils/cookies';
 
 import './update.css';
 
-const AdminUpdateView = ({profile, handleUpdateAdmin, success, message}) => (
+//let user = JSON.parse(localStorage.getItem('user'));
+
+const AdminUpdateView = ({profile, handleUpdateAdmin, success, message, role}) => (
   <div className='container profile-update'>
     <div className={(success) ? 'message success' : 'message error'}>{message}</div>
     <form onSubmit={handleUpdateAdmin}>
@@ -17,7 +19,7 @@ const AdminUpdateView = ({profile, handleUpdateAdmin, success, message}) => (
       </div>
       <div>
         <label>Role</label>
-        {(getCookie('role') === 'Admin')
+        {(role === 'Admin')
           ?
           <select name="role" className="dropdown" defaultValue={profile.role}>
             <option>Select</option>

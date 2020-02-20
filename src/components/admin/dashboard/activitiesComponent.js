@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { activityActions } from '../../../actions/dashboardActions';
 
 class ActivitiesComponent extends Component {
@@ -13,7 +12,7 @@ class ActivitiesComponent extends Component {
     if (this.props.activities.activities === undefined || this.props.activities.activities.length <= 0) {
       return <div>Loading...</div>
     }
-
+console.log('activities length '+this.props.activities.activities.length);
     return (
       <div className='activities'>
         <h4>Recent Activities</h4>

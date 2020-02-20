@@ -13,7 +13,9 @@ import HeaderComponent from '../../commons/headerComponent';
 import EmployeeDetailsView from './employeeDetailsView';
 import DialogComponent from '../../commons/dialog/dialogComponent';
 
-import { getCookie } from '../../../utils/cookies';
+//import { getCookie } from '../../../utils/cookies';
+
+var user = null;
 
 class EmployeeDetailsComponent extends Component {
   state = {
@@ -25,11 +27,13 @@ class EmployeeDetailsComponent extends Component {
 
   constructor(props) {
     super(props);
+    user = JSON.parse(localStorage.getItem('user'));
+
     const data = {
       employeeID: this.props.match.params.id,
       admin: {
-        id: getCookie('id'),
-        access: getCookie('role')
+        id: user.id,
+        access: user.role
       }
     };
 
@@ -49,8 +53,8 @@ class EmployeeDetailsComponent extends Component {
     if (response === 'yes') {
       const data = {
         admin: {
-          access: getCookie('role'),
-          id: getCookie('id')
+          access: user.role,
+          id: user.id
         },
         id: this.props.response.details.response._id
       };

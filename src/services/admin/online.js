@@ -1,14 +1,18 @@
-import { getCookie } from '../../utils/cookies';
+//import { getCookie } from '../../utils/cookies';
 import { baseurl } from '../../utils/baseurl';
 
+
 export const fetchOnlineEmployeesService = () => {
-  const FETCH_ONLINE_EMPLOYEES = baseurl(`dashboard/online?id=${getCookie('id')}`);
+  
+  let user = JSON.parse(localStorage.getItem('user'));
+
+  const FETCH_ONLINE_EMPLOYEES = baseurl(`dashboard/online?id=${user.id}`);
 
   const parameters = {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': getCookie('timeoff-token')
+      'Authorization': user.token
     }
   };
 

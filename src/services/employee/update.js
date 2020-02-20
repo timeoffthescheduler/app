@@ -1,14 +1,18 @@
-import { getCookie } from '../../utils/cookies';
+//import { getCookie } from '../../utils/cookies';
 import { baseurl } from '../../utils/baseurl';
 
+
 export const updateEmployeeDetailsService = (request) => {
+  
+  let user = JSON.parse(localStorage.getItem('user'));
+
   const UPDATE_PROFILE = baseurl('employee/details');
 
   const parameters = {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': getCookie('timeoff-token')
+      'Authorization': user.token
     },
     body: JSON.stringify(request.details)
   };

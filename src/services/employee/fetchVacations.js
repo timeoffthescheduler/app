@@ -1,14 +1,17 @@
-import { getCookie } from '../../utils/cookies';
+//import { getCookie } from '../../utils/cookies';
 import { baseurl } from '../../utils/baseurl';
 
 export const fetchVacationsService = (request) => {
+
+  let user = JSON.parse(localStorage.getItem('user'));
+
   const FETCH_VACATIONS = baseurl(`employee/vacation?id=${request.id.id}`);
 
   const parameters = {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': getCookie('timeoff-token')
+      'Authorization': user.token
     }
   };
 
