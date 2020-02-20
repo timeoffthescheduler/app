@@ -1,28 +1,31 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { getCookie, setCookie } from '../../utils/cookies';
+//import { getCookie, setCookie } from '../../utils/cookies';
 import { connect } from 'react-redux';
 
 import { logoutAction } from '../../actions/authenticationActions';
 
+var user = null;
+
 class LogoutComponent extends Component {
   constructor(props) {
     super(props);
-    this.props.dispatch(logoutAction({id: getCookie('id'), access: getCookie('role')}));
+    user = JSON.parse(localStorage.getItem('user'));
+    this.props.dispatch(logoutAction({id: user.id, access: user.role}));
   }
 
   render() {
-    setCookie('timeoff-token', getCookie('token'), 0);
-    setCookie('role', getCookie('role'), 0);
-    setCookie('name', getCookie('name'), 0);
-    setCookie('id', getCookie('id'), 0);
 
-    if (getCookie('timeoff-token') === null || getCookie('timeoff-token') === '') {
+      //localStorage.removeItem('user');
       return <Redirect to='/login' />;
-    }
-    
-    return <Redirect to='/admin/dashboard' />
+
   }
 }
 
-export default connect()(LogoutComponent);
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatch
+  }
+}
+
+export default connect(null, mapDispatchToProps)(LogoutComponent);

@@ -7,16 +7,17 @@ import CountEmployeesComponent from './countEmployeesComponent';
 import OnlineEmployeesComponent from './onlineEmployeesComponent';
 import ActivitiesComponent from './activitiesComponent';
 
-import { getCookie } from '../../../utils/cookies';
+//import { getCookie } from '../../../utils/cookies';
 
 import './dashboard.css';
 
 class DashboardComponent extends Component {
   render() {
+  let user = JSON.parse(localStorage.getItem('user'));
     return (
       <div>
         <HeaderComponent />
-        {(getCookie('role') === 'Admin')
+        {(user.role === 'Admin')
         ?
         <div className='dashboard'>
           <CountEmployeesComponent />

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import moment from 'moment';
+//import moment from 'moment';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { formatDate, parseDate } from 'react-day-picker/moment';
 
@@ -15,12 +15,36 @@ import {
   deleteVacationAction
 } from '../../../actions/employeesActions';
 
-import { getCookie } from '../../../utils/cookies';
+//import { getCookie } from '../../../utils/cookies';
 
 import 'react-day-picker/lib/style.css';
 import './home.css';
 
+/*
+function timer(ms) {
+ return new Promise(res => setTimeout(res, ms));
+}
+
+async function load () { // We need to wrap the loop into an async function for this to work
+  for (var i = 0; i < 3; i++) {
+    console.log(i);
+    await timer(1000); // then the created Promise can be awaited
+  }
+}
+
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
+*/
+
+var user = null;
+
 class HomeComponent extends Component {
+  
   state = {
     from: undefined,
     to: undefined,
@@ -36,12 +60,15 @@ class HomeComponent extends Component {
 
   constructor(props) {
     super(props);
+    user = JSON.parse(localStorage.getItem('user'));
+    
     this.handleFromChange = this.handleFromChange.bind(this);
     this.handleToChange = this.handleToChange.bind(this);
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchVacationActions({ id: getCookie('id') }));
+
+    this.props.dispatch(fetchVacationActions({ id: user.id }));
   }
 
   onSaveHandle = (event) => {
@@ -50,11 +77,11 @@ class HomeComponent extends Component {
     this.props.dispatch(setVacationActions({
       start: this.state.from,
       end: this.to.state.month,
-      employeeID: getCookie('id'),
+      employeeID: user.id,
       expire: false
     }));
 
-    this.props.dispatch(fetchVacationActions({ id: getCookie('id') }));
+    this.props.dispatch(fetchVacationActions({ id: user.id }));
 
     this.setState({ from: undefined, to: undefined });
   }
@@ -83,7 +110,7 @@ class HomeComponent extends Component {
     if (response === 'yes') {
       this.props.dispatch(deleteVacationAction({
         id: this.state.id,
-        employeeID: getCookie('id')
+        employeeID: user.id
       }));
     }
 
@@ -114,15 +141,20 @@ class HomeComponent extends Component {
     }
   }
 
+
   render() {
+  
     if (this.props.fetchVacations === undefined || this.props.fetchVacations.length <= 0) {
       return <div>Loading...</div>
     }
 
+//load();
+//sleep(1000);
+
     const { from, to } = this.state;
     const today = new Date();
     const modifiers = { start: from, end: to };
-
+    
     return (
       <div>
         <HeaderComponent />

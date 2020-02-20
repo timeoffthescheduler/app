@@ -6,8 +6,6 @@ export default function(state = [], action) {
   switch(action.type) {
     case types.FORGOT_PASSWORD_SUCCESS:
       return { ...state, response };
-    case types.FORGOT_PASSWORD_SUCCESS:
-      return { ...state, response };
     default:
       return state;
   }

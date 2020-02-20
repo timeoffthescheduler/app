@@ -28,9 +28,9 @@ const EmployeesListView = (props) => {
       <table>
         <thead>
           <tr>
-            <th><a href='#' onClick={props.onSortHandle}>Name</a></th>
-            <th><a href='#' onClick={props.onSortHandle} className='padding'>Username</a></th>
-            <th><a href='#' onClick={props.onSortHandle} className='padding width'>Position</a></th>
+            <th><button onClick={props.onSortHandle}>Name</button></th>
+            <th><button onClick={props.onSortHandle} className='padding'>Username</button></th>
+            <th><button onClick={props.onSortHandle} className='padding width'>Position</button></th>
           </tr>
         </thead>
         <tbody>

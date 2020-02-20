@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { getCookie } from '../../utils/cookies';
+//import { getCookie } from '../../utils/cookies';
 
 import './header.css';
 
@@ -13,10 +13,13 @@ class HeaderComponent extends Component {
   }
 
   render() {
+
+    let user = JSON.parse(localStorage.getItem('user'));
+
     return (
       <div className='header-container'>
         <Link to='/' className='logo'></Link>
-        {(getCookie('role') === 'Admin')
+        {(user && user.role === 'Admin')
         ?
         <ul className='navbar'>
           <li><Link className={(window.location.pathname.split('/')[2] === 'dashboard') ? 'navlink active' : 'navlink inactive'} to='/admin/dashboard'>Dashboard</Link></li>
@@ -29,9 +32,12 @@ class HeaderComponent extends Component {
           <li><Link className={(window.location.pathname.split('/')[2] === 'profile') ? 'navlink active' : 'navlink inactive'} to='/employee/profile'>Profile</Link></li>
         </ul>
         }
-        {(getCookie('role') === 'Admin')
+        {(user && user.role === 'Admin')
         ? <span className='welcome uppercase'>Welcome <Link to='/admin/profile' className='link success'>Admin</Link></span> 
-        : <span className='welcome uppercase'>Welcome <Link to='/employee/profile' className='link success'>{getCookie('name')}</Link></span>}
+        : (user && user.role !== 'Admin')
+		? <span className='welcome uppercase'>Welcome <Link to='/employee/profile' className='link success'>{user.name}</Link></span>
+		: <span className='welcome uppercase'>Welcome</span>
+	}
         <Link to='/logout' className='btn danger logout'>Logout</Link>
       </div>
     );

@@ -1,14 +1,18 @@
-import { getCookie } from '../../utils/cookies';
+//import { getCookie } from '../../utils/cookies';
 import { baseurl } from '../../utils/baseurl';
 
+
 export const searchService = (request) => {
+
+  let user = JSON.parse(localStorage.getItem('user'));
+
   const SEARCH_ENDPOINT = baseurl('admin/search');
 
   const parameters = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': getCookie('timeoff-token')
+      'Authorization': user.token
     },
     body: JSON.stringify(request.search)
   };

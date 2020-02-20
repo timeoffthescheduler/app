@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getCookie } from '../../../utils/cookies';
+//import { getCookie } from '../../../utils/cookies';
 
 import './profile.css';
 
-const AdminProfileView = ({ profile, match }) => (
+const AdminProfileView = ({ profile, match, id }) => (
   <div className='container profile'>
     <table className='table'>
       <tbody>
@@ -18,7 +18,7 @@ const AdminProfileView = ({ profile, match }) => (
           <th>Email</th><td>{profile.email}</td>
         </tr>
         <tr>
-          <th></th><td><Link className='link success uppercase' to={`/profile/update/${getCookie('id')}`}>Edit</Link></td>
+          <th></th><td><Link className='link success uppercase' to={`/profile/update/${id}`}>Edit</Link></td>
         </tr>
       </tbody>
     </table>

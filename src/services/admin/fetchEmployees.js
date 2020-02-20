@@ -1,7 +1,11 @@
-import { getCookie } from '../../utils/cookies';
+//import { getCookie } from '../../utils/cookies';
 import { baseurl } from '../../utils/baseurl';
 
+
 export const fetchEmployeesService = (request) => {
+
+  let user = JSON.parse(localStorage.getItem('user'));
+
   let id = request.data.id;
   let access = request.data.access;
   let order = request.data.order;
@@ -13,7 +17,7 @@ export const fetchEmployeesService = (request) => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': getCookie('timeoff-token')
+      'Authorization': user.token
     }
   };
 

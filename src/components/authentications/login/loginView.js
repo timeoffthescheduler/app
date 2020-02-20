@@ -18,7 +18,7 @@ const LoginView = (props) => (
         <input type="password" name="password" placeholder="Password" className="fields" />
       </div>
       <div>
-        <Button classes='btn success' buttonLabel='Save' />
+        <Button classes='btn success' buttonLabel='Log in' />
       </div>
       <p className='forgot-password'>
          <Link to='forgot' className='link success'> Forgot your password?</Link>

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { saveEmployeeAction } from '../../../actions/adminActions';
 import AddEmployeeView from './addEmployeeView';
-import { getCookie } from '../../../utils/cookies';
+//import { getCookie } from '../../../utils/cookies';
 
 class NewEmployeeComponent extends Component {
   state = {
@@ -33,11 +33,14 @@ class NewEmployeeComponent extends Component {
       position: position,
       role: role
     }, () => {
+    
+	let user = JSON.parse(localStorage.getItem('user'));
+
       const data = {
         name, role, position, username, password, email,
         admin: {
-          access: getCookie('role'),
-          id: getCookie('id')
+          access: user.role,
+          id: user.id
         }
       };
       

@@ -4,16 +4,18 @@ import { connect } from 'react-redux';
 
 import { employeesListAction, searchEmployeeAction } from '../../../actions/adminActions';
 import EmployeesListView from './employeesListView';
-import { getCookie } from '../../../utils/cookies';
+//import { getCookie } from '../../../utils/cookies';
 
-class EmplyeesListComponent extends Component {
+var user = null;
 
+class EmployeesListComponent extends Component {
+  
   state = {
     employees: undefined,
     search: '',
     data: {
-      id: getCookie('id'),
-      access: getCookie('role'),
+      id: JSON.parse(localStorage.getItem('user')).id,
+      access: JSON.parse(localStorage.getItem('user')).role,
       order: 'desc',
       sortBy: 'username'
     }
@@ -21,6 +23,14 @@ class EmplyeesListComponent extends Component {
 
   constructor(props) {
     super(props);
+  
+    user = JSON.parse(localStorage.getItem('user'));
+    
+    this.setState({
+        data: {
+          id: user.id,
+          access: user.id
+    }});
 
     this.props.dispatch(employeesListAction(this.state.data));
   }
@@ -31,8 +41,8 @@ class EmplyeesListComponent extends Component {
 
       this.props.dispatch(searchEmployeeAction({
         search: event.target.value,
-        access: getCookie('role'),
-        id: getCookie('id')
+        access: user.role,
+        id: user.id
       }));
     } else {
       this.setState({ search: '' });
@@ -47,8 +57,8 @@ class EmplyeesListComponent extends Component {
     if (this.state.data.order === 'asc') {
       this.setState({
         data: {
-          id: getCookie('id'),
-          access: getCookie('role'),
+          id: user.id,
+          access: user.role,
           order: 'desc',
           sortBy: sortBy
         }
@@ -56,8 +66,8 @@ class EmplyeesListComponent extends Component {
     } else {
       this.setState({
         data: {
-          id: getCookie('id'),
-          access: getCookie('role'),
+          id: user.id,
+          access: user.role,
           order: 'asc',
           sortBy: sortBy
         }
@@ -103,4 +113,4 @@ const mapStateToProps = (state) => ({
   response: state
 });
 
-export default connect(mapStateToProps)(EmplyeesListComponent);
+export default connect(mapStateToProps)(EmployeesListComponent);

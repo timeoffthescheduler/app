@@ -1,7 +1,10 @@
-import { getCookie } from '../../utils/cookies';
+//import { getCookie } from '../../utils/cookies';
 import { baseurl } from '../../utils/baseurl';
 
 export const fetchEmployeeDetailsService = (request) => {
+
+  let user = JSON.parse(localStorage.getItem('user'));
+
   const employeeID = request.details.employeeID;
   
   const FETCH_PROFILE = baseurl(`employee/details?employeeID=${employeeID}`);
@@ -10,7 +13,7 @@ export const fetchEmployeeDetailsService = (request) => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': getCookie('timeoff-token')
+      'Authorization': user.token
     }
   }
 

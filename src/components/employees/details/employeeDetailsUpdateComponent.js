@@ -6,7 +6,9 @@ import { employeeDetailsAction, employeeUpdateAction } from '../../../actions/em
 import HeaderComponent from '../../commons/headerComponent';
 import EmployeeDetailsUpdateView from './employeeDetailsUpdateView';
 
-import { getCookie } from '../../../utils/cookies';
+//import { getCookie } from '../../../utils/cookies';
+
+var user = null;
 
 class EmployeeDetailsUpdateComponent extends Component {
 
@@ -15,7 +17,13 @@ class EmployeeDetailsUpdateComponent extends Component {
     message: '',
     employee: {}
   }
+  
+  constructor(props) {
+    super(props);
+    user = JSON.parse(localStorage.getItem('user'));
 
+  }
+  
   componentDidMount() {
     this.props.dispatch(employeeDetailsAction({ employeeID: this.props.match.params.id }));
   }
@@ -34,8 +42,8 @@ class EmployeeDetailsUpdateComponent extends Component {
     const data = {
       name, position, username, password, role, _id, email,
       admin: {
-        access: getCookie('role'),
-        id: getCookie('id')
+        access: user.role,
+        id: user.id
       }
     };
 
@@ -43,21 +51,27 @@ class EmployeeDetailsUpdateComponent extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
+
     if (nextProps.response.update.hasOwnProperty('response')) {
+      
       if (nextProps.response.update.response.success !== prevState.isSuccess) {
-        return {
-          isSuccess: nextProps.response.update.response.success,
-          message: nextProps.response.update.response.message,
-          employee: nextProps.response.details.response
+
+	return {
+          	isSuccess: nextProps.response.update.response.success,
+          	message: nextProps.response.update.response.message,
+          	employee: nextProps.response.details.response
         };
+
       } else {
-        return {
-          isSuccess: nextProps.response.update.response.success,
-          message: nextProps.response.update.response.message
+      
+	return {
+          	isSuccess: false,
+          	message: '',
         };
       }
     } else {
-      return null;
+
+	return null;
     }
   }
 
@@ -73,7 +87,8 @@ class EmployeeDetailsUpdateComponent extends Component {
           message={this.state.message}
           success={this.state.isSuccess}
           handleUpdateEmployee={this.onHandleUpdateEmployee}
-          employee={this.props.response.details.response}
+          employee={this.props.response.details.response} 
+	  role={user.role}
          />
        </div>
     );

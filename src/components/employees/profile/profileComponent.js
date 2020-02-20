@@ -4,19 +4,27 @@ import { connect } from 'react-redux';
 import { employeeDetailsAction } from '../../../actions/employeesActions';
 import HeaderComponent from '../../commons/headerComponent';
 import ProfileView from './profileView';
-import { getCookie } from '../../../utils/cookies';
+//import { getCookie } from '../../../utils/cookies';
+
+var user = null;
 
 class ProfileComponent extends Component {
   state = {
     employee: null
   }
-
+  
+  constructor(props) {
+    super(props);
+    user = JSON.parse(localStorage.getItem('user'));
+  }
+  
   componentDidMount() {
+
     const data = {
-      employeeID: getCookie('id'),
+      employeeID: user.id,
       admin: {
-        id: getCookie('id'),
-        access: getCookie('role')
+        id: user.id,
+        access: user.role
       }
     };
 
@@ -41,7 +49,7 @@ class ProfileComponent extends Component {
     return (
       <div>
         <HeaderComponent />
-        <ProfileView employee={this.props.details.response} />
+        <ProfileView employee={this.props.details.response} id={user.id} />
       </div>
     )
   }
