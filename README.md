@@ -60,6 +60,9 @@ In order to use TimeOff on local environment, `clone` this repository. CD into r
 
 ![Video](screenshots/timeoff-setup.gif)
 
+# Pricing
+$1 per employee
+
 # Build for production
 To build this project for production. Run `npm run build` command inside timeoff-app folder and it will generate the production ready project inside build directory. For details visit [deployment](https://facebook.github.io/create-react-app/docs/deployment) and [creating a production build](https://facebook.github.io/create-react-app/docs/production-build).
 
