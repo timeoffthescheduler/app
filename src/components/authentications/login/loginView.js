@@ -5,8 +5,6 @@ import Button from '../../commons/buttons/button';
 import { AuthContainer, LogoContainer, AuthForm } from '../assets/guest-styles';
 import { Forgot } from './styles';
 
-import './login.js';
-
 const LoginView = (props) => (
   <AuthContainer>
     <LogoContainer to="/"><img src="../assets/images/guest-logo.png" alt="Timeoff" /></LogoContainer>

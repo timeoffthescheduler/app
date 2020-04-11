@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Activities } from './styles';
 import { activityActions } from '../../../actions/dashboardActions';
 
 class ActivitiesComponent extends Component {
@@ -15,14 +15,14 @@ class ActivitiesComponent extends Component {
     }
 
     return (
-      <div className='activities'>
+      <Activities>
         <h4>Recent Activities</h4>
         <ul>
           {this.props.activities.activities.map(activity => (
             <li key={activity._id} className='uppercase'>{activity.activity}</li>
           ))}
         </ul>
-      </div>
+      </Activities>
     );
   }
 }

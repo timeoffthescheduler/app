@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Card } from './styles';
 import { onlineEmployeesAction } from '../../../actions/dashboardActions';
 
 class OnlineEmployeesComponent extends Component {
@@ -11,10 +11,10 @@ class OnlineEmployeesComponent extends Component {
 
   render() {
     return (
-      <div className='card online'>
+      <Card>
         <h1>{this.props.online.online}</h1>
         <p>Employees Online</p>
-      </div>
+      </Card>
     );
   }
 }
