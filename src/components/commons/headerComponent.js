@@ -13,7 +13,7 @@ import { getCookie } from '../../utils/cookies';
 class HeaderComponent extends Component {
 
   componentDidMount() {
-    document.title = 'TimeOff';
+    document.title = 'TimeOff TS';
   }
 
   render() {
