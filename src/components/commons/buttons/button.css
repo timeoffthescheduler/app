@@ -1,5 +1,6 @@
 .btn {
   position: absolute;
+  right: 0;
   color: #ffffff;
   font-size: .9em;
   cursor: pointer;
