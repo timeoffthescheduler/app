@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Card } from './styles';
 import { countEmployeeActions } from '../../../actions/dashboardActions';
 
 class CountEmployeesComponent extends Component {
@@ -15,10 +15,10 @@ class CountEmployeesComponent extends Component {
     }
 
     return (
-      <div className='card count'>
+      <Card>
         <h1>{this.props.count.total}</h1>
         <p>Employees</p>
-      </div>
+      </Card>
     );
   }
 }

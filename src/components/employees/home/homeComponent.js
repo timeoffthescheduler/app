@@ -119,6 +119,8 @@ class HomeComponent extends Component {
       return <div>Loading...</div>
     }
 
+    console.log(this.props);
+
     const { from, to } = this.state;
     const today = new Date();
     const modifiers = { start: from, end: to };

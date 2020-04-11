@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import { forgotPasswordAction } from '../../../actions/authenticationActions';
-import Button from '../../commons/buttons/button';
-
-import './forgot.css';
+import { AuthContainer, LogoContainer, AuthForm } from '../assets/guest-styles';
+import { ButtonReset } from './styles';
 
 class ForgotComponent extends Component {
   state = {
@@ -43,18 +41,18 @@ class ForgotComponent extends Component {
 
   render() {
     return (
-      <div className='login-container forgot'>
+      <AuthContainer>
         <div className={(this.state.success) ? 'error success' : 'error'}>{this.state.message}</div>
-        <Link to='/' className='logo-login'></Link>
-        <form onSubmit={this.renew.bind(this)}>
+        <LogoContainer to='/'><img src="../assets/images/guest-logo.png" alt="Timeoff" /></LogoContainer>
+        <AuthForm onSubmit={this.renew.bind(this)}>
           <input type='text' name='username' placeholder='Enter username' className='fields' />
           <input type='password' name='password' placeholder='Enter new password' className='fields' />
-          <Button classes='btn success' buttonLabel='Reset password' />
-        </form>
+          <ButtonReset classes='btn success' buttonLabel='Reset password' />
+        </AuthForm>
         <div>
           <Link to='login' className='link success'>Login</Link>
         </div>
-      </div>
+      </AuthContainer>
     );
   }
 }
