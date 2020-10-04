@@ -73,4 +73,4 @@ In order to contribute, please open issues and make pull requests.
 The design(PSDs) could be found on my [Uplab Profile](https://www.uplabs.com/posts/timeoff-to-schedule-vacations).
 
 # Contact
-timeoff.sendmail@gmail.com
+zsaleem@protonmail.com
