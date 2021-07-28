@@ -11,6 +11,8 @@
   <a target="_blank" href='https://medium.com/@zafarsaleem/how-i-built-my-own-open-source-project-a876c6d6b720'>Medium</a>
 </p>
 
+### Note: This project is no longer maintained on this repository. It is moved to private repository.
+
 **Note**: This project requires to setup server side implementation which could be found [here](https://github.com/timeoffthescheduler/server)
 
 TimeOff is an application that allows companies and organizations to allow their employees to set vacations before they take their time off. 
